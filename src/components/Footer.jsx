@@ -6,7 +6,9 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-6">
         {/* Footer Bottom */}
         <div>
-          <p className="text-sm">&copy; 2024 MyApp. All rights reserved.</p>
+          <p className="text-sm">
+            &copy; 2024-2025 MyApp. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>
