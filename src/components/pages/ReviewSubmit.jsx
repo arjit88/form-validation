@@ -1,5 +1,7 @@
 import React from "react";
 import useFormContext from "../../utils/UseFormContext";
+import { toast, ToastContainer } from "react-toastify"; // Import toast and ToastContainer
+import "react-toastify/dist/ReactToastify.css"; // Import toast styles
 
 const ReviewSubmit = () => {
   const {
@@ -16,9 +18,28 @@ const ReviewSubmit = () => {
   // Simulate loading when clicking the submit button
   const handleSubmit = () => {
     setIsLoading(true);
+
     setTimeout(() => {
       setIsLoading(false);
-      alert("Form Submitted!");
+
+      // Simulating a successful form submission
+      const isFormValid = true; // You can add actual validation here
+
+      if (isFormValid) {
+        toast.success("Form Submitted Successfully!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+        });
+      } else {
+        toast.error("Error submitting the form. Please try again.", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+        });
+      }
     }, 2000);
   };
 
@@ -96,6 +117,9 @@ const ReviewSubmit = () => {
           </button>
         </div>
       </div>
+
+      {/* Toast container for showing toasts */}
+      <ToastContainer />
     </div>
   );
 };

@@ -48,6 +48,7 @@ const AddressDetails = () => {
                 id="addresss"
                 className="w-full px-4 py-2 mt-1 rounded-md bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-black dark:text-white"
                 placeholder="Enter your address"
+                required
                 value={details.addresss}
                 onChange={(e) =>
                   setDetails((prev) => ({ ...prev, addresss: e.target.value }))
@@ -67,6 +68,7 @@ const AddressDetails = () => {
                 id="city"
                 className="w-full px-4 py-2 mt-1 rounded-md bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-black dark:text-white"
                 placeholder="Enter your city"
+                required
                 value={details.city}
                 onChange={(e) =>
                   setDetails((prev) => ({ ...prev, city: e.target.value }))
