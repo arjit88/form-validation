@@ -2,6 +2,7 @@ import React from "react";
 import useFormContext from "../../utils/UseFormContext";
 import { toast, ToastContainer } from "react-toastify"; // Import toast and ToastContainer
 import "react-toastify/dist/ReactToastify.css"; // Import toast styles
+import { useNavigate } from "react-router-dom";
 
 const ReviewSubmit = () => {
   const {
@@ -13,7 +14,9 @@ const ReviewSubmit = () => {
     isPreferencesSubmitted,
     isLoading,
     setIsLoading,
+    resetForm,
   } = useFormContext();
+  const navigate = useNavigate();
 
   // Simulate loading when clicking the submit button
   const handleSubmit = () => {
@@ -32,6 +35,11 @@ const ReviewSubmit = () => {
           hideProgressBar: false,
           closeOnClick: true,
         });
+
+        setTimeout(() => {
+          resetForm();
+          navigate("/");
+        }, 2000);
       } else {
         toast.error("Error submitting the form. Please try again.", {
           position: "top-right",

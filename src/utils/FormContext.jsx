@@ -24,6 +24,26 @@ const FormContext = ({ children }) => {
   const [isPreferencesSubmitted, setIsPreferencesSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
+  // Reset function to clear all fields
+  const resetForm = () => {
+    setInputs({
+      userName: "",
+      email: "",
+      password: "",
+    });
+    setDetails({
+      addresss: "",
+      city: "",
+    });
+    setPreferences({
+      isHired: false,
+      notificationsEnabled: false,
+    });
+    setIsPersonalInfoSubmitted(false);
+    setIsAddressSubmitted(false);
+    setIsPreferencesSubmitted(false);
+  };
+
   const value = {
     inputs,
     setInputs,
@@ -39,6 +59,7 @@ const FormContext = ({ children }) => {
     setIsPreferencesSubmitted,
     isLoading,
     setIsLoading,
+    resetForm,
   };
   return <Context.Provider value={value}>{children}</Context.Provider>;
 };

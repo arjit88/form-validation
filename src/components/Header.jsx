@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { CiLight } from "react-icons/ci";
 import { IoIosMoon } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom"; // Import useLocation
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
+  const location = useLocation(); // Get the current location
 
   // Check local storage for user's dark mode preference on page load
   useEffect(() => {
@@ -46,25 +47,41 @@ const Header = () => {
         <nav className="hidden lg:flex space-x-6">
           <Link
             to="/"
-            className="hover:text-gray-300 transition-colors duration-300"
+            className={`${
+              location.pathname === "/"
+                ? "text-yellow-600"
+                : "hover:text-gray-300"
+            } transition-colors duration-300`}
           >
             Personal Information
           </Link>
           <Link
             to="/address"
-            className="hover:text-gray-300 transition-colors duration-300"
+            className={`${
+              location.pathname === "/address"
+                ? "text-yellow-600"
+                : "hover:text-gray-300"
+            } transition-colors duration-300`}
           >
             Address Details
           </Link>
           <Link
             to="/preferences"
-            className="hover:text-gray-300 transition-colors duration-300"
+            className={`${
+              location.pathname === "/preferences"
+                ? "text-yellow-600"
+                : "hover:text-gray-300"
+            } transition-colors duration-300`}
           >
             Preferences
           </Link>
           <Link
             to="/review"
-            className="hover:text-gray-300 transition-colors duration-300"
+            className={`${
+              location.pathname === "/review"
+                ? "text-yellow-600"
+                : "hover:text-gray-300"
+            } transition-colors duration-300`}
           >
             Review & Submit
           </Link>
@@ -120,25 +137,41 @@ const Header = () => {
           <nav className="flex flex-col items-center py-4 space-y-4">
             <Link
               to="/"
-              className="hover:text-gray-300 transition-colors duration-300"
+              className={`${
+                location.pathname === "/"
+                  ? "text-yellow-600"
+                  : "hover:text-gray-300"
+              } transition-colors duration-300`}
             >
               Personal Information
             </Link>
             <Link
               to="/address"
-              className="hover:text-gray-300 transition-colors duration-300"
+              className={`${
+                location.pathname === "/address"
+                  ? "text-yellow-600"
+                  : "hover:text-gray-300"
+              } transition-colors duration-300`}
             >
               Address Details
             </Link>
             <Link
               to="/preferences"
-              className="hover:text-gray-300 transition-colors duration-300"
+              className={`${
+                location.pathname === "/preferences"
+                  ? "text-yellow-600"
+                  : "hover:text-gray-300"
+              } transition-colors duration-300`}
             >
               Preferences
             </Link>
             <Link
               to="/review"
-              className="hover:text-gray-300 transition-colors duration-300"
+              className={`${
+                location.pathname === "/review"
+                  ? "text-yellow-600"
+                  : "hover:text-gray-300"
+              } transition-colors duration-300`}
             >
               Review & Submit
             </Link>
