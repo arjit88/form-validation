@@ -3,15 +3,15 @@ import { createContext, useState } from "react";
 export const Context = createContext();
 
 const FormContext = ({ children }) => {
-  const [input, setInput] = useState({
+  const [inputs, setInputs] = useState({
     userName: "",
     email: "",
     password: "",
   });
 
   const value = {
-    input,
-    setInput,
+    inputs,
+    setInputs,
   };
   return <Context.Provider value={value}>{children}</Context.Provider>;
 };
