@@ -1,7 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import useFormContext from "../../utils/UseFormContext";
 
 const AddressDetails = () => {
+  const { details, setDetails } = useFormContext();
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    navigate("/preferences");
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       {/* Main content area */}
@@ -13,19 +22,23 @@ const AddressDetails = () => {
           </h1>
 
           {/* Form */}
-          <form className="space-y-6">
+          <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
               <label
-                htmlFor="address"
+                htmlFor="addresss"
                 className="block text-sm font-medium text-black dark:text-white"
               >
-                Address
+                Addresss
               </label>
               <input
                 type="text"
-                id="address"
+                id="addresss"
                 className="w-full px-4 py-2 mt-1 rounded-md bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-black dark:text-white"
                 placeholder="Enter your address"
+                value={details.addresss}
+                onChange={(e) =>
+                  setDetails({ ...details, addresss: e.target.value })
+                }
               />
             </div>
 
@@ -41,25 +54,28 @@ const AddressDetails = () => {
                 id="city"
                 className="w-full px-4 py-2 mt-1 rounded-md bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-black dark:text-white"
                 placeholder="Enter your city"
+                value={details.city}
+                onChange={(e) =>
+                  setDetails({ ...details, city: e.target.value })
+                }
               />
+
+              <div className="flex justify-between mt-8">
+                <Link
+                  to="/"
+                  className="bg-gray-600 text-white py-2 px-6 rounded-md hover:bg-gray-700 transition-colors duration-300"
+                >
+                  Previous Page
+                </Link>
+                <button
+                  type="submit"
+                  className="bg-blue-600 text-white py-2 px-6 rounded-md hover:bg-blue-700 transition-colors duration-300"
+                >
+                  Submit
+                </button>
+              </div>
             </div>
           </form>
-
-          {/* Submit Button */}
-          <div className="flex justify-between mt-8">
-            <Link
-              to="/"
-              className="bg-gray-600 text-white py-2 px-6 rounded-md hover:bg-gray-700 transition-colors duration-300"
-            >
-              Previous Page
-            </Link>
-            <Link
-              to="/preferences"
-              className="bg-blue-600 text-white py-2 px-6 rounded-md hover:bg-blue-700 transition-colors duration-300"
-            >
-              Submit
-            </Link>
-          </div>
         </div>
       </section>
     </div>

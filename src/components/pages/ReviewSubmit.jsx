@@ -1,7 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import useFormContext from "../../utils/UseFormContext";
 
 const ReviewSubmit = () => {
+  const { inputs, details } = useFormContext();
+
   return (
     <div className="min-h-screen flex flex-col">
       {/* Main content area */}
@@ -19,13 +22,37 @@ const ReviewSubmit = () => {
                 Personal Information
               </h2>
               <p className="text-sm text-black dark:text-white">
-                Username: John Doe
+                Username:{" "}
+                {inputs.userName !== "" ? (
+                  inputs.userName
+                ) : (
+                  <span className="text-red-600">
+                    Please go back to Personal Information page and fill your
+                    username.
+                  </span>
+                )}
               </p>
               <p className="text-sm text-black dark:text-white">
-                Email: johndoe@example.com
+                Email:{" "}
+                {inputs.email !== "" ? (
+                  inputs.email
+                ) : (
+                  <span className="text-red-600">
+                    Please go back to Personal Information page and fill your
+                    email.
+                  </span>
+                )}
               </p>
               <p className="text-sm text-black dark:text-white">
-                Password: 12345678
+                Password:{" "}
+                {inputs.password !== "" ? (
+                  inputs.password
+                ) : (
+                  <span className="text-red-600">
+                    Please go back to Personal Information page and fill your
+                    password.
+                  </span>
+                )}
               </p>
             </div>
 
@@ -34,10 +61,24 @@ const ReviewSubmit = () => {
                 Address Details
               </h2>
               <p className="text-sm text-black dark:text-white">
-                Address: 1234 Main St
+                Address:{" "}
+                {details.addresss !== "" ? (
+                  details.addresss
+                ) : (
+                  <span className="text-red-600">
+                    Please go back to Adress Details page and fill your Address.
+                  </span>
+                )}
               </p>
               <p className="text-sm text-black dark:text-white">
-                City: New York
+                City:{" "}
+                {details.city !== "" ? (
+                  details.city
+                ) : (
+                  <span className="text-red-600">
+                    Please go back to Adress Details page and fill your City.
+                  </span>
+                )}
               </p>
             </div>
 

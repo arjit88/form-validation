@@ -8,7 +8,7 @@ const PersonalInfo = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(inputs);
+    navigate("/address");
   };
 
   return (
@@ -82,7 +82,6 @@ const PersonalInfo = () => {
               <div className="flex justify-center mt-8">
                 <button
                   type="submit"
-                  onClick={() => navigate("/address")}
                   className="bg-blue-600 text-white py-2 px-6 rounded-md hover:bg-blue-700 transition-colors duration-300"
                 >
                   Submit
