@@ -9,7 +9,18 @@ const ReviewSubmit = () => {
     isPersonalInfoSubmitted,
     isAddressSubmitted,
     isPreferencesSubmitted,
+    isLoading,
+    setIsLoading,
   } = useFormContext();
+
+  // Simulate loading when clicking the submit button
+  const handleSubmit = () => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+      alert("Form Submitted!");
+    }, 2000);
+  };
 
   if (
     !isPersonalInfoSubmitted ||
@@ -65,13 +76,23 @@ const ReviewSubmit = () => {
           </p>
         </div>
 
-        {/* Submit Button */}
+        {/* Submit Button with Loading Spinner */}
         <div className="flex justify-center">
           <button
-            className="bg-blue-600 text-white py-2 px-6 rounded-md hover:bg-blue-700 transition-colors duration-300"
-            onClick={() => alert("Form Submitted!")}
+            className={`bg-blue-600 text-white py-2 px-6 rounded-md hover:bg-blue-700 transition-colors duration-300 relative flex items-center justify-center ${
+              isLoading ? "cursor-not-allowed opacity-75" : ""
+            }`}
+            onClick={handleSubmit}
+            disabled={isLoading}
           >
-            Submit
+            {isLoading ? (
+              <span
+                className="w-5 h-5 border-2 border-t-transparent border-white rounded-full animate-spin"
+                aria-label="Loading"
+              ></span>
+            ) : (
+              "Submit"
+            )}
           </button>
         </div>
       </div>

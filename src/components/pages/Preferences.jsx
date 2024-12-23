@@ -1,10 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"; // Import useNavigate
 import useFormContext from "../../utils/UseFormContext";
 
 const Preferences = () => {
-  const { preferences, setPreferences, setIsPreferencesSubmitted } =
-    useFormContext();
+  const {
+    preferences,
+    setPreferences,
+    setIsPreferencesSubmitted,
+    isLoading,
+    setIsLoading,
+  } = useFormContext();
+  const navigate = useNavigate(); // Initialize navigate hook
 
   const handleCheckboxChange = (e) => {
     const { id, checked } = e.target;
@@ -12,7 +18,14 @@ const Preferences = () => {
   };
 
   const handleSubmit = () => {
+    setIsLoading(true); // Show loader
     setIsPreferencesSubmitted(true);
+
+    // Simulate loading delay (e.g., submitting data)
+    setTimeout(() => {
+      setIsLoading(false);
+      navigate("/review");
+    }, 2000);
   };
 
   return (
@@ -33,12 +46,7 @@ const Preferences = () => {
                 id="isHired"
                 className="mr-2 text-blue-600 dark:text-blue-400"
                 checked={preferences.isHired}
-                onChange={(e) =>
-                  setPreferences((prev) => ({
-                    ...prev,
-                    isHired: e.target.checked,
-                  }))
-                }
+                onChange={handleCheckboxChange}
               />
               <label
                 htmlFor="isHired"
@@ -54,12 +62,7 @@ const Preferences = () => {
                 id="notificationsEnabled"
                 className="mr-2 text-blue-600 dark:text-blue-400"
                 checked={preferences.notificationsEnabled}
-                onChange={(e) =>
-                  setPreferences((prev) => ({
-                    ...prev,
-                    notificationsEnabled: e.target.checked,
-                  }))
-                }
+                onChange={handleCheckboxChange}
               />
               <label
                 htmlFor="notificationsEnabled"
@@ -78,13 +81,23 @@ const Preferences = () => {
             >
               Previous Page
             </Link>
-            <Link
-              to="/review"
-              className="bg-blue-600 text-white py-2 px-6 rounded-md hover:bg-blue-700 transition-colors duration-300"
+            <button
+              type="button"
               onClick={handleSubmit}
+              className={`bg-blue-600 text-white py-2 px-6 rounded-md hover:bg-blue-700 transition-colors duration-300 relative flex items-center justify-center ${
+                isLoading ? "cursor-not-allowed opacity-75" : ""
+              }`}
+              disabled={isLoading}
             >
-              Submit
-            </Link>
+              {isLoading ? (
+                <div
+                  className="w-5 h-5 border-2 border-t-transparent border-white rounded-full animate-spin"
+                  aria-label="Loading"
+                ></div>
+              ) : (
+                "Submit"
+              )}
+            </button>
           </div>
         </div>
       </section>

@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { CiLight } from "react-icons/ci";
+import { IoIosMoon } from "react-icons/io";
 import { Link } from "react-router-dom";
 
 const Header = () => {
@@ -71,40 +73,14 @@ const Header = () => {
         {/* Dark Mode Toggle Button */}
         <button
           className={`p-2 rounded-full ${
-            darkMode ? "bg-gray-600 text-gray-200" : "bg-gray-200 text-gray-800"
+            darkMode ? "bg-gray-600 text-gray-200" : "bg-blue-400 text-gray-800"
           } transition-colors duration-300`}
           onClick={toggleDarkMode}
         >
           {darkMode ? (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              strokeWidth="2"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M12 3v3m0 12v3m9-9h-3m-12 0H3m14.828-5.828l-2.122 2.122m-9.192 9.192l-2.122 2.122m9.192-9.192l2.122 2.122m-9.192 9.192l-2.122 2.122"
-              ></path>
-            </svg>
+            <CiLight className="h-6 w-6" />
           ) : (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              strokeWidth="2"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M12 3v3m0 12v3m9-9h-3m-12 0H3m14.828-5.828l-2.122 2.122m-9.192 9.192l-2.122 2.122m9.192-9.192l2.122 2.122m-9.192 9.192l-2.122 2.122"
-              ></path>
-            </svg>
+            <IoIosMoon className="h-6 w-6 text-white" />
           )}
         </button>
 

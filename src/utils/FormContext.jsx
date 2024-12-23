@@ -22,6 +22,7 @@ const FormContext = ({ children }) => {
   const [isPersonalInfoSubmitted, setIsPersonalInfoSubmitted] = useState(false);
   const [isAddressSubmitted, setIsAddressSubmitted] = useState(false);
   const [isPreferencesSubmitted, setIsPreferencesSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const value = {
     inputs,
@@ -36,6 +37,8 @@ const FormContext = ({ children }) => {
     setIsAddressSubmitted,
     isPreferencesSubmitted,
     setIsPreferencesSubmitted,
+    isLoading,
+    setIsLoading,
   };
   return <Context.Provider value={value}>{children}</Context.Provider>;
 };

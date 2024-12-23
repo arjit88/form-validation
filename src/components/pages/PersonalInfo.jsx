@@ -3,13 +3,25 @@ import { useNavigate } from "react-router-dom";
 import useFormContext from "../../utils/UseFormContext";
 
 const PersonalInfo = () => {
-  const { inputs, setInputs, setIsPersonalInfoSubmitted } = useFormContext();
+  const {
+    inputs,
+    setInputs,
+    setIsPersonalInfoSubmitted,
+    isLoading,
+    setIsLoading,
+  } = useFormContext();
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsLoading(true);
     setIsPersonalInfoSubmitted(true);
-    navigate("/address");
+
+    // Simulate a delay before navigating
+    setTimeout(() => {
+      setIsLoading(false);
+      navigate("/address");
+    }, 2000);
   };
 
   return (
@@ -83,9 +95,19 @@ const PersonalInfo = () => {
               <div className="flex justify-center mt-8">
                 <button
                   type="submit"
-                  className="bg-blue-600 text-white py-2 px-6 rounded-md hover:bg-blue-700 transition-colors duration-300"
+                  className={`bg-blue-600 text-white py-2 px-6 rounded-md hover:bg-blue-700 transition-colors duration-300 relative flex items-center justify-center ${
+                    isLoading ? "cursor-not-allowed opacity-75" : ""
+                  }`}
+                  disabled={isLoading}
                 >
-                  Submit
+                  {isLoading ? (
+                    <span
+                      className="w-5 h-5 border-2 border-t-transparent border-white rounded-full animate-spin"
+                      aria-label="Loading"
+                    ></span>
+                  ) : (
+                    "Submit"
+                  )}
                 </button>
               </div>
             </div>

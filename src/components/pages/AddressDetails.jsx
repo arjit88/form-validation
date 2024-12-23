@@ -1,15 +1,27 @@
-import React from "react";
+import Reac from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useFormContext from "../../utils/UseFormContext";
 
 const AddressDetails = () => {
-  const { details, setDetails, setIsAddressSubmitted } = useFormContext();
+  const {
+    details,
+    setDetails,
+    setIsAddressSubmitted,
+    isLoading,
+    setIsLoading,
+  } = useFormContext();
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsLoading(true);
     setIsAddressSubmitted(true);
-    navigate("/preferences");
+
+    // Simulate loading delay
+    setTimeout(() => {
+      setIsLoading(false);
+      navigate("/preferences");
+    }, 2000);
   };
 
   return (
@@ -60,21 +72,31 @@ const AddressDetails = () => {
                   setDetails((prev) => ({ ...prev, city: e.target.value }))
                 }
               />
+            </div>
 
-              <div className="flex justify-between mt-8">
-                <Link
-                  to="/"
-                  className="bg-gray-600 text-white py-2 px-6 rounded-md hover:bg-gray-700 transition-colors duration-300"
-                >
-                  Previous Page
-                </Link>
-                <button
-                  type="submit"
-                  className="bg-blue-600 text-white py-2 px-6 rounded-md hover:bg-blue-700 transition-colors duration-300"
-                >
-                  Submit
-                </button>
-              </div>
+            <div className="flex justify-between mt-8">
+              <Link
+                to="/"
+                className="bg-gray-600 text-white py-2 px-6 rounded-md hover:bg-gray-700 transition-colors duration-300"
+              >
+                Previous Page
+              </Link>
+              <button
+                type="submit"
+                className={`bg-blue-600 text-white py-2 px-6 rounded-md hover:bg-blue-700 transition-colors duration-300 relative flex items-center justify-center ${
+                  isLoading ? "cursor-not-allowed opacity-75" : ""
+                }`}
+                disabled={isLoading}
+              >
+                {isLoading ? (
+                  <span
+                    className="w-5 h-5 border-2 border-t-transparent border-white rounded-full animate-spin"
+                    aria-label="Loading"
+                  ></span>
+                ) : (
+                  "Submit"
+                )}
+              </button>
             </div>
           </form>
         </div>
