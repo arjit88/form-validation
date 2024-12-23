@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { CiLight } from "react-icons/ci";
 import { IoIosMoon } from "react-icons/io";
-import { Link, useLocation } from "react-router-dom"; // Import useLocation
+import { Link, useLocation } from "react-router-dom";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
-  const location = useLocation(); // Get the current location
+  const location = useLocation();
 
   // Check local storage for user's dark mode preference on page load
   useEffect(() => {
@@ -22,7 +22,7 @@ const Header = () => {
     localStorage.setItem("darkMode", !darkMode);
   };
 
-  // Apply the dark class to the <html> element based on the darkMode state
+  // Apply the dark class to the element based on the darkMode state
   useEffect(() => {
     if (darkMode) {
       document.documentElement.classList.add("dark");

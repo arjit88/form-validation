@@ -1,7 +1,7 @@
 import React from "react";
 import useFormContext from "../../utils/UseFormContext";
-import { toast, ToastContainer } from "react-toastify"; // Import toast and ToastContainer
-import "react-toastify/dist/ReactToastify.css"; // Import toast styles
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 
 const ReviewSubmit = () => {
@@ -26,7 +26,7 @@ const ReviewSubmit = () => {
       setIsLoading(false);
 
       // Simulating a successful form submission
-      const isFormValid = true; // You can add actual validation here
+      const isFormValid = true;
 
       if (isFormValid) {
         toast.success("Form Submitted Successfully!", {
@@ -100,7 +100,7 @@ const ReviewSubmit = () => {
             <strong>Are you hired:</strong> {preferences.isHired ? "Yes" : "No"}
           </p>
           <p className="text-sm">
-            <strong>Enable Notifications:</strong>{" "}
+            <strong>Are you willing to work:</strong>{" "}
             {preferences.notificationsEnabled ? "Yes" : "No"}
           </p>
         </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom"; // Import useNavigate
+import { Link, useNavigate } from "react-router-dom";
 import useFormContext from "../../utils/UseFormContext";
 
 const Preferences = () => {
@@ -21,7 +21,7 @@ const Preferences = () => {
     setIsLoading(true); // Show loader
     setIsPreferencesSubmitted(true);
 
-    // Simulate loading delay (e.g., submitting data)
+    // Simulate loading delay
     setTimeout(() => {
       setIsLoading(false);
       navigate("/review");
@@ -68,7 +68,7 @@ const Preferences = () => {
                 htmlFor="notificationsEnabled"
                 className="text-sm font-medium text-black dark:text-white"
               >
-                Enable Notifications
+                Are you willing to work
               </label>
             </div>
           </div>
