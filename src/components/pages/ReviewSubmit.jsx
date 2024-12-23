@@ -1,122 +1,80 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import useFormContext from "../../utils/UseFormContext";
 
 const ReviewSubmit = () => {
-  const { inputs, details } = useFormContext();
+  const {
+    inputs,
+    details,
+    preferences,
+    isPersonalInfoSubmitted,
+    isAddressSubmitted,
+    isPreferencesSubmitted,
+  } = useFormContext();
+
+  if (
+    !isPersonalInfoSubmitted ||
+    !isAddressSubmitted ||
+    !isPreferencesSubmitted
+  ) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-white dark:bg-gray-900 text-black dark:text-white">
+        <p>Please complete all sections before reviewing.</p>
+      </div>
+    );
+  }
 
   return (
-    <div className="min-h-screen flex flex-col">
-      {/* Main content area */}
-      <section className="flex-1 flex justify-center items-center bg-white dark:bg-gray-900 py-10 px-4">
-        <div className="w-full max-w-md">
-          {/* Header */}
-          <h1 className="text-4xl font-bold mb-6 text-center text-black dark:text-white">
-            Review & Submit
-          </h1>
+    <div className="min-h-screen flex flex-col items-center justify-center bg-white dark:bg-gray-900 text-black dark:text-white py-10 px-4">
+      <div className="w-full max-w-3xl bg-gray-100 dark:bg-gray-800 p-6 rounded-lg shadow-md">
+        <h1 className="text-4xl font-bold mb-6 text-center">Review & Submit</h1>
 
-          {/* Review Content */}
-          <div className="space-y-8">
-            <div>
-              <h2 className="text-xl font-semibold text-black dark:text-white">
-                Personal Information
-              </h2>
-              <p className="text-sm text-black dark:text-white">
-                Username:{" "}
-                {inputs.userName !== "" ? (
-                  inputs.userName
-                ) : (
-                  <span className="text-red-600">
-                    Please go back to Personal Information page and fill your
-                    username.
-                  </span>
-                )}
-              </p>
-              <p className="text-sm text-black dark:text-white">
-                Email:{" "}
-                {inputs.email !== "" ? (
-                  inputs.email
-                ) : (
-                  <span className="text-red-600">
-                    Please go back to Personal Information page and fill your
-                    email.
-                  </span>
-                )}
-              </p>
-              <p className="text-sm text-black dark:text-white">
-                Password:{" "}
-                {inputs.password !== "" ? (
-                  inputs.password
-                ) : (
-                  <span className="text-red-600">
-                    Please go back to Personal Information page and fill your
-                    password.
-                  </span>
-                )}
-              </p>
-            </div>
-
-            <div>
-              <h2 className="text-xl font-semibold text-black dark:text-white">
-                Address Details
-              </h2>
-              <p className="text-sm text-black dark:text-white">
-                Address:{" "}
-                {details.addresss !== "" ? (
-                  details.addresss
-                ) : (
-                  <span className="text-red-600">
-                    Please go back to Adress Details page and fill your Address.
-                  </span>
-                )}
-              </p>
-              <p className="text-sm text-black dark:text-white">
-                City:{" "}
-                {details.city !== "" ? (
-                  details.city
-                ) : (
-                  <span className="text-red-600">
-                    Please go back to Adress Details page and fill your City.
-                  </span>
-                )}
-              </p>
-            </div>
-
-            <div>
-              <h2 className="text-xl font-semibold text-black dark:text-white">
-                Preferences
-              </h2>
-              <p className="text-sm text-black dark:text-white">
-                Are you hired: Yes
-              </p>
-              <p className="text-sm text-black dark:text-white">
-                Enable Notifications: Yes
-              </p>
-            </div>
-          </div>
-
-          {/* Buttons */}
-          <div className="flex justify-between mt-8">
-            <Link
-              to="/preferences"
-              className="bg-gray-600 text-white py-2 px-6 rounded-md hover:bg-gray-700 transition-colors duration-300"
-            >
-              Previous Page
-            </Link>
-            <Link
-              to="/"
-              className="bg-green-600 text-white py-2 px-6 rounded-md hover:bg-green-700 transition-colors duration-300"
-            >
-              Submit
-            </Link>
-          </div>
+        {/* Personal Information Section */}
+        <div className="mb-6">
+          <h2 className="text-2xl font-semibold mb-2">Personal Information</h2>
+          <p className="text-sm">
+            <strong>Username:</strong> {inputs.userName}
+          </p>
+          <p className="text-sm">
+            <strong>Email:</strong> {inputs.email}
+          </p>
+          <p className="text-sm">
+            <strong>Password:</strong> {inputs.password}
+          </p>
         </div>
-      </section>
 
-      {/* Footer */}
-      <footer className="bg-gray-800 text-white py-4 text-center">
-        <p className="text-sm">&copy; 2024 MyApp. All rights reserved.</p>
-      </footer>
+        {/* Address Details Section */}
+        <div className="mb-6">
+          <h2 className="text-2xl font-semibold mb-2">Address Details</h2>
+          <p className="text-sm">
+            <strong>Address:</strong> {details.addresss}
+          </p>
+          <p className="text-sm">
+            <strong>City:</strong> {details.city}
+          </p>
+        </div>
+
+        {/* Preferences Section */}
+        <div className="mb-6">
+          <h2 className="text-2xl font-semibold mb-2">Preferences</h2>
+          <p className="text-sm">
+            <strong>Are you hired:</strong> {preferences.isHired ? "Yes" : "No"}
+          </p>
+          <p className="text-sm">
+            <strong>Enable Notifications:</strong>{" "}
+            {preferences.notificationsEnabled ? "Yes" : "No"}
+          </p>
+        </div>
+
+        {/* Submit Button */}
+        <div className="flex justify-center">
+          <button
+            className="bg-blue-600 text-white py-2 px-6 rounded-md hover:bg-blue-700 transition-colors duration-300"
+            onClick={() => alert("Form Submitted!")}
+          >
+            Submit
+          </button>
+        </div>
+      </div>
     </div>
   );
 };

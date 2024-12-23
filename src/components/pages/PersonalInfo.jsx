@@ -3,11 +3,12 @@ import { useNavigate } from "react-router-dom";
 import useFormContext from "../../utils/UseFormContext";
 
 const PersonalInfo = () => {
-  const { inputs, setInputs } = useFormContext();
+  const { inputs, setInputs, setIsPersonalInfoSubmitted } = useFormContext();
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsPersonalInfoSubmitted(true);
     navigate("/address");
   };
 
@@ -37,7 +38,7 @@ const PersonalInfo = () => {
                 placeholder="Enter your name"
                 value={inputs.userName}
                 onChange={(e) =>
-                  setInputs({ ...inputs, userName: e.target.value })
+                  setInputs((prev) => ({ ...prev, userName: e.target.value }))
                 }
               />
             </div>
@@ -56,7 +57,7 @@ const PersonalInfo = () => {
                 placeholder="Enter your email"
                 value={inputs.email}
                 onChange={(e) =>
-                  setInputs({ ...inputs, email: e.target.value })
+                  setInputs((prev) => ({ ...prev, email: e.target.value }))
                 }
               />
             </div>
@@ -75,7 +76,7 @@ const PersonalInfo = () => {
                 placeholder="Enter your password"
                 value={inputs.password}
                 onChange={(e) =>
-                  setInputs({ ...inputs, password: e.target.value })
+                  setInputs((prev) => ({ ...prev, password: e.target.value }))
                 }
               />
 

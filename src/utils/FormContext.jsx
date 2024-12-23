@@ -14,11 +14,28 @@ const FormContext = ({ children }) => {
     city: "",
   });
 
+  const [preferences, setPreferences] = useState({
+    isHired: false,
+    notificationsEnabled: false,
+  });
+
+  const [isPersonalInfoSubmitted, setIsPersonalInfoSubmitted] = useState(false);
+  const [isAddressSubmitted, setIsAddressSubmitted] = useState(false);
+  const [isPreferencesSubmitted, setIsPreferencesSubmitted] = useState(false);
+
   const value = {
     inputs,
     setInputs,
     details,
     setDetails,
+    preferences,
+    setPreferences,
+    isPersonalInfoSubmitted,
+    setIsPersonalInfoSubmitted,
+    isAddressSubmitted,
+    setIsAddressSubmitted,
+    isPreferencesSubmitted,
+    setIsPreferencesSubmitted,
   };
   return <Context.Provider value={value}>{children}</Context.Provider>;
 };

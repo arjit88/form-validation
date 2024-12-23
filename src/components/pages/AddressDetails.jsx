@@ -3,11 +3,12 @@ import { Link, useNavigate } from "react-router-dom";
 import useFormContext from "../../utils/UseFormContext";
 
 const AddressDetails = () => {
-  const { details, setDetails } = useFormContext();
+  const { details, setDetails, setIsAddressSubmitted } = useFormContext();
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsAddressSubmitted(true);
     navigate("/preferences");
   };
 
@@ -37,7 +38,7 @@ const AddressDetails = () => {
                 placeholder="Enter your address"
                 value={details.addresss}
                 onChange={(e) =>
-                  setDetails({ ...details, addresss: e.target.value })
+                  setDetails((prev) => ({ ...prev, addresss: e.target.value }))
                 }
               />
             </div>
@@ -56,7 +57,7 @@ const AddressDetails = () => {
                 placeholder="Enter your city"
                 value={details.city}
                 onChange={(e) =>
-                  setDetails({ ...details, city: e.target.value })
+                  setDetails((prev) => ({ ...prev, city: e.target.value }))
                 }
               />
 
